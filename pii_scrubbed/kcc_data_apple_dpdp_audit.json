@@ -1,0 +1,217 @@
+{
+  "generated_at": "2026-11-21T06:45:20.052976+00:00",
+  "framework": "Digital Personal Data Protection Act, 2023 (India) - engineering guardrails",
+  "input_file": "kcc_data_apple.jsonl",
+  "input_sha256": "06efe2f273e7f9b4689f7b252b08bd4bf5d04187c2ce79d4e5d852a727a32448",
+  "output_file": "kcc_data_apple_scrubbed.jsonl",
+  "config": {
+    "mode": "redact",
+    "score_threshold": 0.4,
+    "spacy_model": "en_core_web_lg",
+    "person_recall": "strict",
+    "fields_scanned": [
+      "QueryText",
+      "KccAns"
+    ],
+    "entities_in_scope": [
+      "IN_AADHAAR",
+      "IN_PAN",
+      "IN_PASSPORT",
+      "IN_BANK_ACCOUNT",
+      "CREDIT_CARD",
+      "IBAN_CODE",
+      "IN_VOTER",
+      "UPI_ID",
+      "PHONE_NUMBER",
+      "EMAIL_ADDRESS",
+      "PERSON",
+      "IN_VEHICLE_REGISTRATION",
+      "IN_GSTIN",
+      "IN_IFSC",
+      "IN_PINCODE"
+    ],
+    "entity_risk_tiers": {
+      "IN_AADHAAR": "critical",
+      "IN_PAN": "critical",
+      "IN_PASSPORT": "critical",
+      "IN_BANK_ACCOUNT": "critical",
+      "CREDIT_CARD": "critical",
+      "IBAN_CODE": "critical",
+      "IN_VOTER": "high",
+      "UPI_ID": "high",
+      "PHONE_NUMBER": "high",
+      "EMAIL_ADDRESS": "high",
+      "PERSON": "medium",
+      "IN_VEHICLE_REGISTRATION": "medium",
+      "IN_GSTIN": "medium",
+      "IN_IFSC": "low",
+      "IN_PINCODE": "low"
+    },
+    "allow_list_patterns": [
+      "1800[\\s-]?180[\\s-]?1551",
+      "1800[\\s-]?\\d{3}[\\s-]?\\d{4}",
+      "\\b1551\\b",
+      "\\b155261\\b|\\b1930\\b|\\b112\\b",
+      "[\\w.+-]+@(?:[\\w-]+\\.)*(?:gov|nic)\\.in"
+    ],
+    "quarantine_critical": false
+  },
+  "records_total": 308448,
+  "records_written": 308448,
+  "records_quarantined": 0,
+  "records_with_pii": 5406,
+  "records_by_risk": {
+    "none": 303042,
+    "high": 5119,
+    "medium": 268,
+    "critical": 18,
+    "low": 1
+  },
+  "entities_total": {
+    "PHONE_NUMBER": 6684,
+    "PERSON": 1211,
+    "EMAIL_ADDRESS": 208,
+    "IN_PINCODE": 29,
+    "IN_IFSC": 21,
+    "IN_PAN": 11,
+    "IN_AADHAAR": 7,
+    "IN_BANK_ACCOUNT": 3
+  },
+  "entities_by_field": {
+    "KccAns": {
+      "PHONE_NUMBER": 6658,
+      "PERSON": 1176,
+      "EMAIL_ADDRESS": 207,
+      "IN_PINCODE": 29,
+      "IN_IFSC": 21,
+      "IN_PAN": 11,
+      "IN_AADHAAR": 7,
+      "IN_BANK_ACCOUNT": 3
+    },
+    "QueryText": {
+      "PERSON": 35,
+      "PHONE_NUMBER": 26,
+      "EMAIL_ADDRESS": 1
+    }
+  },
+  "post_scrub_verification": {
+    "residual_leak_counts": {
+      "email": 15
+    },
+    "status": "REVIEW",
+    "sample_locations": [
+      {
+        "line": 20276,
+        "field": "KccAns",
+        "types": [
+          "email"
+        ]
+      },
+      {
+        "line": 33980,
+        "field": "KccAns",
+        "types": [
+          "email"
+        ]
+      },
+      {
+        "line": 43929,
+        "field": "KccAns",
+        "types": [
+          "email"
+        ]
+      },
+      {
+        "line": 71239,
+        "field": "KccAns",
+        "types": [
+          "email"
+        ]
+      },
+      {
+        "line": 109413,
+        "field": "KccAns",
+        "types": [
+          "email"
+        ]
+      },
+      {
+        "line": 112117,
+        "field": "KccAns",
+        "types": [
+          "email"
+        ]
+      },
+      {
+        "line": 155318,
+        "field": "KccAns",
+        "types": [
+          "email"
+        ]
+      },
+      {
+        "line": 157030,
+        "field": "KccAns",
+        "types": [
+          "email"
+        ]
+      },
+      {
+        "line": 226257,
+        "field": "KccAns",
+        "types": [
+          "email"
+        ]
+      },
+      {
+        "line": 272898,
+        "field": "KccAns",
+        "types": [
+          "email"
+        ]
+      },
+      {
+        "line": 280922,
+        "field": "KccAns",
+        "types": [
+          "email",
+          "email"
+        ]
+      },
+      {
+        "line": 288054,
+        "field": "KccAns",
+        "types": [
+          "email"
+        ]
+      },
+      {
+        "line": 292720,
+        "field": "KccAns",
+        "types": [
+          "email"
+        ]
+      },
+      {
+        "line": 302834,
+        "field": "KccAns",
+        "types": [
+          "email"
+        ]
+      }
+    ]
+  },
+  "dpdp_controls": {
+    "data_minimisation": "Only free-text fields scanned; identifiers replaced, never copied to logs.",
+    "purpose_limitation": "Scrubbed output intended for model training/analytics on agronomic advice.",
+    "audit_without_pii": "This report holds counts and line numbers only - no personal data values.",
+    "pseudonymisation_key": "n/a",
+    "human_review_file": "kcc_data_apple_REVIEW_CONTAINS_PII.csv (CONTAINS RAW PII - restrict access, delete after review)",
+    "known_limitations": [
+      "spaCy English NER does not detect names written in Devanagari unless preceded by an honorific (श्री/श्रीमती/डॉ).",
+      "Names without honorifics in ALL-CAPS text may be missed by NER.",
+      "Context-gated entities (bank account, PIN code) require a nearby keyword."
+    ]
+  },
+  "elapsed_seconds": 600.9
+}

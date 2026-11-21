@@ -216,3 +216,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Data files (large / may contain personal data)
+*.jsonl
+
+# PII review samples from pii_scrub_dpdp.py --review (contain RAW PII - never commit)
+*_REVIEW_CONTAINS_PII.csv
