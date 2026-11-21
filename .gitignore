@@ -222,3 +222,6 @@ __marimo__/
 
 # PII review samples from pii_scrub_dpdp.py --review (contain RAW PII - never commit)
 *_REVIEW_CONTAINS_PII.csv
+
+# Claude Code local session data
+.claude/
